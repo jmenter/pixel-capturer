@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -807,7 +806,7 @@
                         <outlet property="devicePopup" destination="exs-vQ-dlP" id="9EJ-gH-ZA9"/>
                         <outlet property="formatPopup" destination="NNy-yU-E7H" id="H82-dx-Hs7"/>
                         <outlet property="frameSizeLabel" destination="jWP-Ic-Jlg" id="zEj-eS-GdF"/>
-                        <outlet property="myView" destination="GRu-Hz-LFX" id="GIz-ee-hwy"/>
+                        <outlet property="pixelView" destination="GRu-Hz-LFX" id="GIz-ee-hwy"/>
                         <outlet property="scalePopup" destination="e1G-hc-JuA" id="GXk-jM-efk"/>
                     </connections>
                 </viewController>

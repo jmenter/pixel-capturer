@@ -1,11 +1,12 @@
 
 #import "ViewController.h"
+#import "AVCaptureDevice+Extras.h"
 
 @import AVFoundation;
 
 @interface ViewController()<AVCaptureVideoDataOutputSampleBufferDelegate>
 
-@property (weak) IBOutlet NSView *myView;
+@property (weak) IBOutlet NSView *pixelView;
 @property (weak) IBOutlet NSTextField *frameSizeLabel;
 
 @property (nonatomic) AVCaptureSession *session;
@@ -27,21 +28,28 @@
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
-    
+
+    [self.scalePopup removeAllItems];
+    [self.scalePopup addItemsWithTitles:@[@"1x", @"2x", @"3x", @"4x"]];
+
     self.session = AVCaptureSession.new;
     AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera, AVCaptureDeviceTypeExternalUnknown] mediaType:nil position:AVCaptureDevicePositionUnspecified];
     self.devices = discoverySession.devices;
-    self.myView.layer.backgroundColor = NSColor.blackColor.CGColor;
+
     [self.devicePopup removeAllItems];
     [self.devicePopup addItemsWithTitles:[self.devices valueForKey:@"localizedName"]];
-    
+
     [self.formatPopup removeAllItems];
-    
-    [self.scalePopup removeAllItems];
-    [self.scalePopup addItemsWithTitles:@[@"1x", @"2x", @"3x", @"4x"]];
+
     self.captureSessionQueue = dispatch_queue_create("captureSessionQueue", NULL);
     self.sampleBufferDelegateQueue = dispatch_queue_create("sampleBufferDelegateQueue", NULL);
     
+}
+
+- (void)viewDidAppear;
+{
+    [super viewDidAppear];
+    [self devicePopupDidSelect:self.devicePopup];
 }
 
 - (AVCaptureDevice *)currentlySelectedDevice;
@@ -71,23 +79,12 @@
     [self.session addInput:self.currentDeviceInput];
     self.currentDeviceOutput = AVCaptureVideoDataOutput.new;
     [self.session addOutput:self.currentDeviceOutput];
-    //        self.session.sessionPreset = AVCaptureSessionPreset960x540;
     [self.currentDeviceOutput setSampleBufferDelegate:self queue:self.sampleBufferDelegateQueue];
-    //        NSArray<NSNumber *> * pixelFormatTypes =
-    //        output.videoSettings = nil;
-    //        output.availableVideoCVPixelFormatTypes
-    //        AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-    //        preview.frame = self.myView.bounds;
-    
-    //        self.myView.wantsLayer = YES;
-    //        self.myView.layer = preview;
-    //        self.myView.layer.minificationFilter = kCAFilterNearest;
-    //        self.myView.layer.magnificationFilter = kCAFilterNearest;
-    
-        dispatch_async(self.captureSessionQueue, ^{
-            [self.session startRunning];
-            [device unlockForConfiguration];
-        });
+
+    dispatch_async(self.captureSessionQueue, ^{
+        [self.session startRunning];
+        [device unlockForConfiguration];
+    });
     
 }
 - (IBAction)devicePopupDidSelect:(NSPopUpButton *)sender;
@@ -103,8 +100,13 @@
     [self configureCurrentlySelectedDevice];
 }
 
-#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
+- (CGFloat)currentlySelectedScalingFactor;
+{
+    CGFloat scalingFactor = self.scalePopup.indexOfSelectedItem + 1;
+    return scalingFactor / self.view.window.backingScaleFactor;
+}
 
+#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
@@ -112,35 +114,25 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 {
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     CVPixelBufferLockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
-    CIImage *image = [CIImage imageWithCVImageBuffer:imageBuffer];
-    CGImageRef renderedImage = [CIContext.context createCGImage:image fromRect:image.extent];
-    CGSize frameSize = image.extent.size;
+    CIImage *imageFromBuffer = [CIImage imageWithCVImageBuffer:imageBuffer];
+    CGImageRef imageRef = [CIContext.context createCGImage:imageFromBuffer fromRect:imageFromBuffer.extent];
+    CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
+
+    CGSize frameSize = imageFromBuffer.extent.size;
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        CGFloat scalingFactor = 0.5;
-        if (self.scalePopup.indexOfSelectedItem == 1) {
-            scalingFactor = 1;
-        }
-        if (self.scalePopup.indexOfSelectedItem == 2) {
-            scalingFactor = 1.5;
-        }
-        if (self.scalePopup.indexOfSelectedItem == 3) {
-            scalingFactor = 2;
-        }
-
-        CGRect frame = self.myView.frame;
-        frame.size.width = frameSize.width * scalingFactor;
-        frame.size.height = frameSize.height * scalingFactor;
+        CGRect frame = self.pixelView.frame;
+        frame.size.width = frameSize.width * self.currentlySelectedScalingFactor;
+        frame.size.height = frameSize.height * self.currentlySelectedScalingFactor;
         frame.origin.x = 20;
         frame.origin.y = self.view.frame.size.height - frame.size.height - 78;
-        self.myView.frame = frame;
-        self.myView.layer.minificationFilter = kCAFilterNearest;
-        self.myView.layer.magnificationFilter = kCAFilterNearest;
-        self.myView.layer.contents = (__bridge id)renderedImage;
-        self.frameSizeLabel.stringValue = [NSString stringWithFormat:@"video frame size (px): %@, view size (pt): %@, fps: %lld", NSStringFromSize(frameSize), NSStringFromSize(frame.size), self.currentlySelectedDevice.activeVideoMinFrameDuration.timescale / self.currentlySelectedDevice.activeVideoMinFrameDuration.value];
-        CGImageRelease(renderedImage);
+        self.pixelView.frame = frame;
+        self.pixelView.layer.minificationFilter = kCAFilterNearest;
+        self.pixelView.layer.magnificationFilter = kCAFilterNearest;
+        self.pixelView.layer.contents = (__bridge id)imageRef;
+        self.frameSizeLabel.stringValue = [NSString stringWithFormat:@"video frame size (px): %@, view size (pt): %@, fps: %0.2f, display density: %0.1f", NSStringFromSize(frameSize), NSStringFromSize(frame.size), self.currentlySelectedDevice.framesPerSecond, self.view.window.backingScaleFactor];
+        CGImageRelease(imageRef);
     });
-    CVPixelBufferUnlockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
 }
 
 @end

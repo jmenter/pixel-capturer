@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6374A6AC268D646000DD7984 /* AVCaptureDevice+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 6374A6AB268D646000DD7984 /* AVCaptureDevice+Extras.m */; };
 		637B38AE268A90280041B2C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 637B38AD268A90280041B2C1 /* AppDelegate.m */; };
 		637B38B1268A90280041B2C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 637B38B0268A90280041B2C1 /* ViewController.m */; };
 		637B38B3268A902A0041B2C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 637B38B2268A902A0041B2C1 /* Assets.xcassets */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6374A6AA268D646000DD7984 /* AVCaptureDevice+Extras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVCaptureDevice+Extras.h"; sourceTree = "<group>"; };
+		6374A6AB268D646000DD7984 /* AVCaptureDevice+Extras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDevice+Extras.m"; sourceTree = "<group>"; };
 		637B38A9268A90280041B2C1 /* Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		637B38AC268A90280041B2C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		637B38AD268A90280041B2C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -61,6 +64,8 @@
 				637B38AD268A90280041B2C1 /* AppDelegate.m */,
 				637B38AF268A90280041B2C1 /* ViewController.h */,
 				637B38B0268A90280041B2C1 /* ViewController.m */,
+				6374A6AA268D646000DD7984 /* AVCaptureDevice+Extras.h */,
+				6374A6AB268D646000DD7984 /* AVCaptureDevice+Extras.m */,
 				637B38B2268A902A0041B2C1 /* Assets.xcassets */,
 				637B38B4268A902A0041B2C1 /* Main.storyboard */,
 				637B38B7268A902A0041B2C1 /* Info.plist */,
@@ -138,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6374A6AC268D646000DD7984 /* AVCaptureDevice+Extras.m in Sources */,
 				637B38B1268A90280041B2C1 /* ViewController.m in Sources */,
 				637B38B9268A902A0041B2C1 /* main.m in Sources */,
 				637B38AE268A90280041B2C1 /* AppDelegate.m in Sources */,
