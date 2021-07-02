@@ -16,6 +16,7 @@
 @property (weak) IBOutlet NSPopUpButton *devicePopup;
 @property (weak) IBOutlet NSPopUpButton *formatPopup;
 @property (weak) IBOutlet NSPopUpButton *scalePopup;
+@property (weak) IBOutlet NSPopUpButton *displayPopup;
 
 @property (nonatomic) dispatch_queue_t captureSessionQueue;
 @property (nonatomic) dispatch_queue_t sampleBufferDelegateQueue;
@@ -31,6 +32,9 @@
 
     [self.scalePopup removeAllItems];
     [self.scalePopup addItemsWithTitles:@[@"1x", @"2x", @"3x", @"4x"]];
+
+    [self.displayPopup removeAllItems];
+    [self.displayPopup addItemsWithTitles:@[@"AVCaptureVideoPreviewLayer", @"CMSampleBufferRef"]];
 
     self.session = AVCaptureSession.new;
     AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera, AVCaptureDeviceTypeExternalUnknown] mediaType:nil position:AVCaptureDevicePositionUnspecified];
@@ -79,6 +83,16 @@
     [self.session addInput:self.currentDeviceInput];
     self.currentDeviceOutput = AVCaptureVideoDataOutput.new;
     [self.session addOutput:self.currentDeviceOutput];
+
+//    if (self.displayPopup.indexOfSelectedItem == 0) {
+//        AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+//        preview.frame = self.pixelView.bounds;
+//        self.pixelView.layer = preview;
+//        self.pixelView.layer.contentsGravity = kCAGravityTopLeft;
+//        self.pixelView.layer.minificationFilter = kCAFilterNearest;
+//        self.pixelView.layer.magnificationFilter = kCAFilterNearest;
+//    } else {
+//    }
     [self.currentDeviceOutput setSampleBufferDelegate:self queue:self.sampleBufferDelegateQueue];
 
     dispatch_async(self.captureSessionQueue, ^{
@@ -96,6 +110,11 @@
 }
 
 - (IBAction)formatPopupDidSelect:(id)sender;
+{
+    [self configureCurrentlySelectedDevice];
+}
+
+- (IBAction)displayPopupDidSelect:(NSPopUpButton *)sender;
 {
     [self configureCurrentlySelectedDevice];
 }

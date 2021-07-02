@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -764,7 +765,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jWP-Ic-Jlg">
-                                <rect key="frame" x="151" y="720" width="1192" height="16"/>
+                                <rect key="frame" x="419" y="720" width="924" height="16"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="frame size: n/a" id="nvJ-lo-Cyd">
                                     <font key="font" metaFont="system"/>
@@ -800,10 +801,38 @@
                                 <rect key="frame" x="20" y="-10" width="1080" height="720"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYk-32-mdd">
+                                <rect key="frame" x="184" y="720" width="52" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Display:" id="7xM-gg-yy6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="927-Kt-d6A">
+                                <rect key="frame" x="240" y="714" width="108" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="inU-dc-ihf" id="ccB-0D-Rd4">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="UJq-ZR-dIh">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="inU-dc-ihf"/>
+                                            <menuItem title="Item 2" id="O0p-Ac-Jb6"/>
+                                            <menuItem title="Item 3" id="b9g-QL-tN2"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="displayPopupDidSelect:" target="XfG-lQ-9wD" id="gwM-Wh-HNe"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="devicePopup" destination="exs-vQ-dlP" id="9EJ-gH-ZA9"/>
+                        <outlet property="displayPopup" destination="927-Kt-d6A" id="1Cj-tD-nGw"/>
                         <outlet property="formatPopup" destination="NNy-yU-E7H" id="H82-dx-Hs7"/>
                         <outlet property="frameSizeLabel" destination="jWP-Ic-Jlg" id="zEj-eS-GdF"/>
                         <outlet property="pixelView" destination="GRu-Hz-LFX" id="GIz-ee-hwy"/>
