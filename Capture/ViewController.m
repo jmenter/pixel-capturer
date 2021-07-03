@@ -17,11 +17,13 @@
 @property (weak) IBOutlet NSPopUpButton *formatPopup;
 @property (weak) IBOutlet NSPopUpButton *scalePopup;
 @property (weak) IBOutlet NSPopUpButton *displayPopup;
+@property NSUInteger displayPopupValue;
 
 @property (nonatomic) dispatch_queue_t captureSessionQueue;
 @property (nonatomic) dispatch_queue_t sampleBufferDelegateQueue;
 
 @property (nonatomic) NSArray <AVCaptureDevice *> *devices;
+
 @end
 
 @implementation ViewController
@@ -34,7 +36,7 @@
     [self.scalePopup addItemsWithTitles:@[@"1x", @"2x", @"3x", @"4x"]];
 
     [self.displayPopup removeAllItems];
-    [self.displayPopup addItemsWithTitles:@[@"AVCaptureVideoPreviewLayer", @"CMSampleBufferRef"]];
+    [self.displayPopup addItemsWithTitles:@[ @"CMSampleBufferRef", @"AVCaptureVideoPreviewLayer"]];
 
     self.session = AVCaptureSession.new;
     AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera, AVCaptureDeviceTypeExternalUnknown] mediaType:nil position:AVCaptureDevicePositionUnspecified];
@@ -84,16 +86,28 @@
     self.currentDeviceOutput = AVCaptureVideoDataOutput.new;
     [self.session addOutput:self.currentDeviceOutput];
 
-//    if (self.displayPopup.indexOfSelectedItem == 0) {
-//        AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-//        preview.frame = self.pixelView.bounds;
-//        self.pixelView.layer = preview;
-//        self.pixelView.layer.contentsGravity = kCAGravityTopLeft;
-//        self.pixelView.layer.minificationFilter = kCAFilterNearest;
-//        self.pixelView.layer.magnificationFilter = kCAFilterNearest;
-//    } else {
-//    }
-    [self.currentDeviceOutput setSampleBufferDelegate:self queue:self.sampleBufferDelegateQueue];
+    self.pixelView.layer = nil;
+    if (self.displayPopupValue == 0) {
+        [self.currentDeviceOutput setSampleBufferDelegate:self queue:self.sampleBufferDelegateQueue];
+    } else {
+        CMFormatDescriptionRef description = device.activeFormat.formatDescription;
+        CMVideoDimensions dim = CMVideoFormatDescriptionGetDimensions(description);
+
+        AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+        CGSize frameSize = CGSizeMake(dim.width, dim.height);
+        CGRect frame = self.pixelView.frame;
+        frame.size.width = frameSize.width * self.currentlySelectedScalingFactor;
+        frame.size.height = frameSize.height * self.currentlySelectedScalingFactor;
+        frame.origin.x = 20;
+        frame.origin.y = self.view.frame.size.height - frame.size.height - 78;
+        self.pixelView.frame = frame;
+        preview.frame = self.pixelView.bounds;
+        self.pixelView.layer = preview;
+        self.pixelView.layer.contentsGravity = kCAGravityResize;
+        self.pixelView.layer.minificationFilter = kCAFilterNearest;
+        self.pixelView.layer.magnificationFilter = kCAFilterNearest;
+        self.pixelView.layer.sublayers.firstObject.magnificationFilter = kCAFilterNearest;
+    }
 
     dispatch_async(self.captureSessionQueue, ^{
         [self.session startRunning];
@@ -109,6 +123,11 @@
     [self configureCurrentlySelectedDevice];
 }
 
+- (IBAction)scalePopupDidSelect:(NSPopUpButton *)sender;
+{
+    [self configureCurrentlySelectedDevice];
+}
+
 - (IBAction)formatPopupDidSelect:(id)sender;
 {
     [self configureCurrentlySelectedDevice];
@@ -116,6 +135,7 @@
 
 - (IBAction)displayPopupDidSelect:(NSPopUpButton *)sender;
 {
+    self.displayPopupValue = sender.indexOfSelectedItem;
     [self configureCurrentlySelectedDevice];
 }
 
@@ -131,6 +151,9 @@
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection;
 {
+    if (self.displayPopupValue == 1) {
+        return;
+    }
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     CVPixelBufferLockBaseAddress(imageBuffer, kCVPixelBufferLock_ReadOnly);
     CIImage *imageFromBuffer = [CIImage imageWithCVImageBuffer:imageBuffer];

@@ -787,6 +787,9 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <action selector="scalePopupDidSelect:" target="XfG-lQ-9wD" id="vJW-Vt-RKc"/>
+                                </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pT3-8f-3gL">
                                 <rect key="frame" x="27" y="720" width="41" height="16"/>
