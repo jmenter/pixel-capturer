@@ -738,14 +738,14 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NNy-yU-E7H">
-                                <rect key="frame" x="419" y="744" width="926" height="25"/>
+                                <rect key="frame" x="446" y="744" width="113" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="I8G-H9-Pea" id="Rk2-0h-4T8">
+                                <popUpButtonCell key="cell" type="push" title="1920x1080" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="I8G-H9-Pea" id="Rk2-0h-4T8">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="jZy-iE-XTE">
                                         <items>
-                                            <menuItem title="Item 1" state="on" id="I8G-H9-Pea"/>
+                                            <menuItem title="1920x1080" state="on" id="I8G-H9-Pea"/>
                                             <menuItem title="Item 2" id="iDC-yZ-Plr"/>
                                             <menuItem title="Item 3" id="EyB-Gz-Kqy"/>
                                         </items>
@@ -756,74 +756,38 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4oA-5g-24R">
-                                <rect key="frame" x="365" y="750" width="51" height="16"/>
+                                <rect key="frame" x="363" y="750" width="79" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Format:" id="XaB-nm-DXS">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jWP-Ic-Jlg">
-                                <rect key="frame" x="419" y="720" width="924" height="16"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="frame size: n/a" id="nvJ-lo-Cyd">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1G-hc-JuA">
-                                <rect key="frame" x="71" y="714" width="78" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="3x" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Yhk-Sc-OJi" id="H8k-uN-ejm">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="Keu-nc-gMy">
-                                        <items>
-                                            <menuItem title="1x" id="qh7-9a-PXf"/>
-                                            <menuItem title="2x" id="XDV-fV-s5u"/>
-                                            <menuItem title="3x" state="on" id="Yhk-Sc-OJi"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="scalePopupDidSelect:" target="XfG-lQ-9wD" id="vJW-Vt-RKc"/>
-                                </connections>
-                            </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pT3-8f-3gL">
-                                <rect key="frame" x="27" y="720" width="41" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Scale:" id="QEt-Tt-8XP">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Dimensions:" id="XaB-nm-DXS">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRu-Hz-LFX">
-                                <rect key="frame" x="20" y="-10" width="1080" height="720"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1361" height="725"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYk-32-mdd">
-                                <rect key="frame" x="184" y="720" width="52" height="16"/>
+                                <rect key="frame" x="574" y="750" width="51" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Display:" id="7xM-gg-yy6">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Format:" id="7xM-gg-yy6">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="927-Kt-d6A">
-                                <rect key="frame" x="240" y="714" width="108" height="25"/>
+                                <rect key="frame" x="629" y="744" width="108" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="inU-dc-ihf" id="ccB-0D-Rd4">
+                                <popUpButtonCell key="cell" type="push" title="Integer" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="b9g-QL-tN2" id="ccB-0D-Rd4">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="UJq-ZR-dIh">
                                         <items>
-                                            <menuItem title="Item 1" state="on" id="inU-dc-ihf"/>
-                                            <menuItem title="Item 2" id="O0p-Ac-Jb6"/>
-                                            <menuItem title="Item 3" id="b9g-QL-tN2"/>
+                                            <menuItem title="Fill" id="inU-dc-ihf"/>
+                                            <menuItem title="Aspect Fill" id="O0p-Ac-Jb6"/>
+                                            <menuItem title="Integer" state="on" id="b9g-QL-tN2"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -831,15 +795,97 @@
                                     <action selector="displayPopupDidSelect:" target="XfG-lQ-9wD" id="gwM-Wh-HNe"/>
                                 </connections>
                             </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AbP-3b-eDd">
+                                <rect key="frame" x="753" y="750" width="70" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Framerate:" id="1Pa-z7-xcN">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cn9-s5-Xdj">
+                                <rect key="frame" x="950" y="750" width="52" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Scaling:" id="stL-qJ-Rq8">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cts-aB-xgO">
+                                <rect key="frame" x="1006" y="744" width="108" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Integer" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="59I-M7-anX" id="SVu-WT-7wy">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="q6k-ec-McB">
+                                        <items>
+                                            <menuItem title="Fill" id="fz5-Il-ZxF"/>
+                                            <menuItem title="Aspect Fill" id="EtI-yH-JXO"/>
+                                            <menuItem title="Integer" state="on" id="59I-M7-anX"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="displayPopupDidSelect:" target="XfG-lQ-9wD" id="fjY-Dx-k3U"/>
+                                </connections>
+                            </popUpButton>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-Ib-tg0">
+                                <rect key="frame" x="827" y="744" width="108" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Integer" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="gC1-y3-Z6D" id="1Zu-B0-FRs">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="7JS-8w-rWL">
+                                        <items>
+                                            <menuItem title="Fill" id="2QZ-G6-ruq"/>
+                                            <menuItem title="Aspect Fill" id="rkn-ry-A2k"/>
+                                            <menuItem title="Integer" state="on" id="gC1-y3-Z6D"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="displayPopupDidSelect:" target="XfG-lQ-9wD" id="hpz-YG-KnR"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9B-Gl-OrU">
+                                <rect key="frame" x="1129" y="750" width="39" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Filter:" id="JJG-XI-zWs">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y8z-4J-77K">
+                                <rect key="frame" x="1172" y="744" width="108" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Integer" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="20T-i6-90v" id="bdh-5r-eXH">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="JzD-JM-1Ct">
+                                        <items>
+                                            <menuItem title="Fill" id="fF0-sb-Sag"/>
+                                            <menuItem title="Aspect Fill" id="Z9L-hy-AHm"/>
+                                            <menuItem title="Integer" state="on" id="20T-i6-90v"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="displayPopupDidSelect:" target="XfG-lQ-9wD" id="Kxi-8r-kco"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="devicePopup" destination="exs-vQ-dlP" id="9EJ-gH-ZA9"/>
-                        <outlet property="displayPopup" destination="927-Kt-d6A" id="1Cj-tD-nGw"/>
-                        <outlet property="formatPopup" destination="NNy-yU-E7H" id="H82-dx-Hs7"/>
-                        <outlet property="frameSizeLabel" destination="jWP-Ic-Jlg" id="zEj-eS-GdF"/>
+                        <outlet property="dimensionsPopup" destination="NNy-yU-E7H" id="fOe-TZ-Lr1"/>
+                        <outlet property="filterPopup" destination="Y8z-4J-77K" id="3RJ-p2-i7F"/>
+                        <outlet property="formatPopup" destination="927-Kt-d6A" id="w6h-yY-Q1i"/>
+                        <outlet property="frameRatePopup" destination="GdN-Ib-tg0" id="kt3-0B-68t"/>
                         <outlet property="pixelView" destination="GRu-Hz-LFX" id="GIz-ee-hwy"/>
-                        <outlet property="scalePopup" destination="e1G-hc-JuA" id="GXk-jM-efk"/>
+                        <outlet property="scalingPopup" destination="Cts-aB-xgO" id="8ih-g9-Z8c"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

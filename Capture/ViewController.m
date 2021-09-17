@@ -1,6 +1,7 @@
 
 #import "ViewController.h"
 #import "AVCaptureDevice+Extras.h"
+#import "AVCaptureDeviceFormat+Extras.h"
 
 @import AVFoundation;
 
@@ -14,9 +15,12 @@
 @property (nonatomic) AVCaptureVideoDataOutput *currentDeviceOutput;
 
 @property (weak) IBOutlet NSPopUpButton *devicePopup;
+@property (weak) IBOutlet NSPopUpButton *dimensionsPopup;
 @property (weak) IBOutlet NSPopUpButton *formatPopup;
-@property (weak) IBOutlet NSPopUpButton *scalePopup;
-@property (weak) IBOutlet NSPopUpButton *displayPopup;
+@property (weak) IBOutlet NSPopUpButton *frameRatePopup;
+@property (weak) IBOutlet NSPopUpButton *scalingPopup;
+@property (weak) IBOutlet NSPopUpButton *filterPopup;
+
 @property NSUInteger displayPopupValue;
 
 @property (nonatomic) dispatch_queue_t captureSessionQueue;
@@ -32,21 +36,21 @@
 {
     [super viewDidLoad];
 
-    [self.scalePopup removeAllItems];
-    [self.scalePopup addItemsWithTitles:@[@"1x", @"2x", @"3x", @"4x"]];
+    [self.scalingPopup removeAllItems];
+    [self.scalingPopup addItemsWithTitles:@[@"Fill", @"Aspect Fill", @"Integer", @"1x", @"2x", @"3x", @"4x"]];
 
-    [self.displayPopup removeAllItems];
-    [self.displayPopup addItemsWithTitles:@[ @"CMSampleBufferRef", @"AVCaptureVideoPreviewLayer"]];
+    [self.filterPopup removeAllItems];
+    [self.filterPopup addItemsWithTitles:@[ @"Nearest Neighbor", @"Bilinear", @"Trilinear"]];
 
     self.session = AVCaptureSession.new;
-    AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera, AVCaptureDeviceTypeExternalUnknown] mediaType:nil position:AVCaptureDevicePositionUnspecified];
-    self.devices = discoverySession.devices;
+    self.devices = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera, AVCaptureDeviceTypeExternalUnknown] mediaType:nil position:AVCaptureDevicePositionUnspecified].devices;
 
     [self.devicePopup removeAllItems];
     [self.devicePopup addItemsWithTitles:[self.devices valueForKey:@"localizedName"]];
 
     [self.formatPopup removeAllItems];
-
+    [self.dimensionsPopup removeAllItems];
+    [self.frameRatePopup removeAllItems];
     self.captureSessionQueue = dispatch_queue_create("captureSessionQueue", NULL);
     self.sampleBufferDelegateQueue = dispatch_queue_create("sampleBufferDelegateQueue", NULL);
     
@@ -55,7 +59,9 @@
 - (void)viewDidAppear;
 {
     [super viewDidAppear];
-    [self devicePopupDidSelect:self.devicePopup];
+    if (self.devices.count > 0) {
+        [self devicePopupDidSelect:self.devicePopup];
+    }
 }
 
 - (AVCaptureDevice *)currentlySelectedDevice;
@@ -92,7 +98,7 @@
     } else {
         CMFormatDescriptionRef description = device.activeFormat.formatDescription;
         CMVideoDimensions dim = CMVideoFormatDescriptionGetDimensions(description);
-
+        NSLog(@"subtype: %@", device.activeFormat.mediaSubType);
         AVCaptureVideoPreviewLayer *preview = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
         CGSize frameSize = CGSizeMake(dim.width, dim.height);
         CGRect frame = self.pixelView.frame;
@@ -141,7 +147,7 @@
 
 - (CGFloat)currentlySelectedScalingFactor;
 {
-    CGFloat scalingFactor = self.scalePopup.indexOfSelectedItem + 1;
+    CGFloat scalingFactor = self.scalingPopup.indexOfSelectedItem + 1;
     return scalingFactor / self.view.window.backingScaleFactor;
 }
 

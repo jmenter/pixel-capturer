@@ -13,6 +13,7 @@
 		637B38B3268A902A0041B2C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 637B38B2268A902A0041B2C1 /* Assets.xcassets */; };
 		637B38B6268A902A0041B2C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 637B38B4268A902A0041B2C1 /* Main.storyboard */; };
 		637B38B9268A902A0041B2C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 637B38B8268A902A0041B2C1 /* main.m */; };
+		638A4EF32693DA6F004CAEEF /* AVCaptureDeviceFormat+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 638A4EF22693DA6F004CAEEF /* AVCaptureDeviceFormat+Extras.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		637B38B7268A902A0041B2C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		637B38B8268A902A0041B2C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		637B38BA268A902A0041B2C1 /* Capture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Capture.entitlements; sourceTree = "<group>"; };
+		638A4EF12693DA6F004CAEEF /* AVCaptureDeviceFormat+Extras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVCaptureDeviceFormat+Extras.h"; sourceTree = "<group>"; };
+		638A4EF22693DA6F004CAEEF /* AVCaptureDeviceFormat+Extras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVCaptureDeviceFormat+Extras.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 				637B38B0268A90280041B2C1 /* ViewController.m */,
 				6374A6AA268D646000DD7984 /* AVCaptureDevice+Extras.h */,
 				6374A6AB268D646000DD7984 /* AVCaptureDevice+Extras.m */,
+				638A4EF12693DA6F004CAEEF /* AVCaptureDeviceFormat+Extras.h */,
+				638A4EF22693DA6F004CAEEF /* AVCaptureDeviceFormat+Extras.m */,
 				637B38B2268A902A0041B2C1 /* Assets.xcassets */,
 				637B38B4268A902A0041B2C1 /* Main.storyboard */,
 				637B38B7268A902A0041B2C1 /* Info.plist */,
@@ -147,6 +152,7 @@
 				637B38B1268A90280041B2C1 /* ViewController.m in Sources */,
 				637B38B9268A902A0041B2C1 /* main.m in Sources */,
 				637B38AE268A90280041B2C1 /* AppDelegate.m in Sources */,
+				638A4EF32693DA6F004CAEEF /* AVCaptureDeviceFormat+Extras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
